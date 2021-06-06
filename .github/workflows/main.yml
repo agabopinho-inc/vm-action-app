@@ -20,6 +20,7 @@ jobs:
 
   release:
     runs-on: self-hosted
+    needs: build
     environment:
       name: spot-env
       url: http://bd971d6ccc4e4a788bb891882550d501.brazilsouth.cloudapp.azure.com/WeatherForecast
