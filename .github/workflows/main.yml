@@ -17,7 +17,7 @@ jobs:
       - run: |
           docker build ./azure-web-api -t atekcr.azurecr.io/azure-web-api:${{ github.run_number }}
           docker push atekcr.azurecr.io/azure-web-api:${{ github.run_number }}
-        shell: bash
+        name: azure-web-api
 
   release:
     runs-on: self-hosted
