@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@main
 
       - run: |
-          docker build ./azure-web-api -t azure-web-api:${{ github.run_number }}
+          docker build ./azure-web-api -t atekcr.azurecr.io/azure-web-api:${{ github.run_number }}
         shell: bash
 
   release:
@@ -26,7 +26,6 @@ jobs:
       url: http://bd971d6ccc4e4a788bb891882550d501.brazilsouth.cloudapp.azure.com/WeatherForecast
     steps:
       - run: |
-          docker stop azure-web-api && docker rm azure-web-api
-          docker run -d -p 80:80 --name azure-web-api azure-web-api:${{ github.run_number }}
+          docker service create --replicas 3 -p 80:80 --name azure-web-api atekcr.azurecr.io/azure-web-api:${{ github.run_number }}
         shell: bash
 
