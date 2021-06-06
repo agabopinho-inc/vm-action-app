@@ -3,6 +3,7 @@ version: "3.9"
 services:
   web:
     image: atekcr.azurecr.io/azure-web-api:${TAG}
-    build: .
+    deploy: 
+      replicas: 4
     ports:
       - "80:80"
