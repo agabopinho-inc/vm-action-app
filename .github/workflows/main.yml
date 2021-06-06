@@ -10,6 +10,9 @@ on:
 jobs:
   build:
     runs-on: self-hosted
+    environment:
+      name: spot-env
+      url: http://bd971d6ccc4e4a788bb891882550d501.brazilsouth.cloudapp.azure.com/WeatherForecast
     steps:
       - name: "Checkout GitHub Action"
         uses: actions/checkout@main
