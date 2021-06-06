@@ -27,7 +27,7 @@ jobs:
       url: http://bd971d6ccc4e4a788bb891882550d501.brazilsouth.cloudapp.azure.com/WeatherForecast
     steps:
       - run: |
-          docker stack deploy --compose-file docker-compose.yml azure-web-api
+          docker stack deploy --with-registry-auth --compose-file docker-compose.yml azure-web-api
         shell: bash
         env:
           TAG: ${{ github.run_number }}
