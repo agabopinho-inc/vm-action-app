@@ -1,0 +1,22 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - name: "Checkout GitHub Action"
+        uses: actions/checkout@main
+
+      - run: |
+          docker build ./azure-web-api -t azure-web-api:${{ github.run_number }}
+          docker stop azure-web-api && docker rm azure-web-api
+          docker run -d -p 5000:80 --name azure-web-api azure-web-api:${{ github.run_number }}
+        shell: bash
+
