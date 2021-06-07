@@ -2,7 +2,6 @@ version: "3.9"
 
 services:
   nginx: 
-    name: nginx
     image: atekcr.azurecr.io/nginx:${TAG}
     deploy: 
       replicas: 2
