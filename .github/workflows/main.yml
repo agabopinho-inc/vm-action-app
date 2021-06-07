@@ -11,28 +11,28 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-      - name: "Checkout Repository"
+      - name: "checkout repository"
         uses: actions/checkout@main
 
       - run: |
-          docker build ./azure-web-api -t atekcr.azurecr.io/azure-web-api:${{ github.run_number }}
-          docker push atekcr.azurecr.io/azure-web-api:${{ github.run_number }}
-        name: azure-web-api
+          docker build ./azure-web-api -t atekcr.azurecr.io/customers-api:${{ github.run_number }}
+          docker push atekcr.azurecr.io/customers-api:${{ github.run_number }}
+        name: build customers-api
 
       - run: |
-          docker build ./app-server -t atekcr.azurecr.io/app-server-nginx:${{ github.run_number }}
-          docker push atekcr.azurecr.io/app-server-nginx:${{ github.run_number }}
-        name: app-server
+          docker build ./app-server -t atekcr.azurecr.io/nginx:${{ github.run_number }}
+          docker push atekcr.azurecr.io/nginx:${{ github.run_number }}
+        name: build nginx
 
   release:
     runs-on: self-hosted
     needs: build
     environment:
       name: spot-env
-      url: http://bd971d6ccc4e4a788bb891882550d501.brazilsouth.cloudapp.azure.com/WeatherForecast
     steps:
       - run: |
-          docker stack deploy --with-registry-auth --compose-file docker-compose.yml azure-web-api
+          docker stack deploy --with-registry-auth --compose-file ./azure-web-api/docker-compose.yml customers
+          docker stack deploy --with-registry-auth --compose-file ./app-server/docker-compose.yml nginx
         shell: bash
         env:
           TAG: ${{ github.run_number }}
