@@ -7,6 +7,8 @@ services:
       replicas: 2
     ports:
       - "7000:80"
+    networks: 
+      - services
 
   app-server: 
     image: atekcr.azurecr.io/app-server-nginx:${TAG}
@@ -14,6 +16,8 @@ services:
       replicas: 2
     ports: 
       - "80:80"
+    networks: 
+      - services
     depends_on: 
       - web
 
