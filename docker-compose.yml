@@ -4,7 +4,7 @@ services:
   web:
     image: atekcr.azurecr.io/azure-web-api:${TAG}
     deploy: 
-      replicas: 4
+      replicas: 2
     ports:
       - "7000:80"
 
