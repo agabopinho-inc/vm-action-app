@@ -20,8 +20,8 @@ jobs:
         name: azure-web-api
 
       - run: |
-          docker build ./app-server -t atekcr.azurecr.io/app-server:${{ github.run_number }}
-          docker push atekcr.azurecr.io/app-server:${{ github.run_number }}
+          docker build ./app-server -t atekcr.azurecr.io/app-server-nginx:${{ github.run_number }}
+          docker push atekcr.azurecr.io/app-server-nginx:${{ github.run_number }}
         name: app-server
 
   release:
