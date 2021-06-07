@@ -11,3 +11,7 @@ services:
       backend:
         aliases: 
           - customers-api
+
+networks: 
+  backend:
+    driver: overlay
