@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  api:
+  customers-api:
     image: atekcr.azurecr.io/customers-api:${TAG}
     deploy: 
       replicas: 2
