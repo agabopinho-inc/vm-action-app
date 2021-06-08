@@ -16,12 +16,12 @@ jobs:
 
       - run: |
           docker build ./azure-web-api -t customers-api:${{ github.run_number }}
-          docker push customers-api:${{ github.run_number }}
+          #docker push customers-api:${{ github.run_number }}
         name: build customers-api
 
       - run: |
           docker build ./app-server -t app-server:${{ github.run_number }}
-          docker push app-server:${{ github.run_number }}
+          #docker push app-server:${{ github.run_number }}
         name: build app-server
 
   release:
