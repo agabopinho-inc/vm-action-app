@@ -1,8 +1,8 @@
 version: "3.9"
 
 services:
-  nginx: 
-    image: atekcr.azurecr.io/nginx:${TAG}
+  app-server: 
+    image: app-server:${TAG}
     deploy: 
       replicas: 2
     ports: 

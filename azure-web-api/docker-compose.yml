@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   customers-api:
-    image: atekcr.azurecr.io/customers-api:${TAG}
+    image: customers-api:${TAG}
     deploy: 
       replicas: 2
     ports:
